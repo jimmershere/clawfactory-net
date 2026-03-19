@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClawFactory — The OpenClaw Community Hub</title>
+  <meta name="description" content="The home for everything OpenClaw — skills, agents, news, and the builders who ship. Browse 5,400+ skills, featured agents, and join the #ProtectTheClaw movement." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0c10;
+      --surface: #111318;
+      --surface2: #181c23;
+      --border: #1e2330;
+      --accent: #00ffcc;
+      --accent2: #9b59b6;
+      --accent3: #f5a623;
+      --text: #e8eaf0;
+      --muted: #6b7280;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 12, 16, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a.protect {
+      color: var(--accent2);
+    }
+
+    .nav-links a.protect:hover { color: #b97fd6; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0c10;
+    }
+
+    .btn-primary:hover {
+      background: #00e6b8;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.35);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-danger {
+      background: var(--accent2);
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background: #a96cc7;
+      box-shadow: 0 0 20px rgba(155, 89, 182, 0.35);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(0, 255, 204, 0.08) 0%, transparent 70%),
+        radial-gradient(circle at 80% 80%, rgba(155, 89, 182, 0.06) 0%, transparent 50%);
+      background-color: var(--bg);
+      background-size: 32px 32px;
+      background-position: center;
+    }
+
+    .hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 255, 204, 0.08);
+      border: 1px solid rgba(0, 255, 204, 0.25);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .badge-pill::before { content: '●'; font-size: 0.5rem; }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .hero-ctas .btn { padding: 12px 28px; font-size: 1rem; }
+
+    .stats-bar {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 160px;
+      padding: 18px 24px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .stat-item:nth-child(1) .stat-value { color: var(--accent); }
+    .stat-item:nth-child(4) .stat-value { color: var(--accent2); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 80px 24px; }
+    section:nth-child(even) { background: var(--surface); }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+    }
+
+    /* ─── CARDS ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px rgba(0, 255, 204, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .category-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(0, 255, 204, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+    }
+
+    .category-badge.agent {
+      background: rgba(155, 89, 182, 0.1);
+      color: var(--accent2);
+      border-color: rgba(155, 89, 182, 0.25);
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-link {
+      color: var(--accent);
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+
+    .card-link:hover { gap: 8px; }
+
+    /* ─── PROTECT BANNER ─── */
+    .protect-banner {
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(239, 68, 68, 0.1) 100%);
+      border: 1px solid rgba(155, 89, 182, 0.3);
+      border-radius: 16px;
+      padding: 60px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .protect-content { flex: 1; min-width: 280px; }
+
+    .protect-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent2);
+      margin-bottom: 14px;
+    }
+
+    .protect-banner h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .protect-banner p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .protect-cta { flex-shrink: 0; margin-top: 28px; }
+
+    /* ─── NEWS CARDS ─── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .news-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .news-card:hover {
+      border-color: rgba(0, 255, 204, 0.4);
+      box-shadow: 0 4px 24px rgba(0, 255, 204, 0.07);
+    }
+
+    .news-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .news-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .news-card:nth-child(1) .news-title { color: var(--accent3); }
+
+    .news-read {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: auto;
+      transition: gap 0.2s;
+    }
+
+    .news-read:hover { gap: 8px; }
+
+    /* ─── CATEGORIES ─── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .cat-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cat-item:hover {
+      border-color: var(--accent);
+      background: rgba(0, 255, 204, 0.05);
+      box-shadow: 0 0 16px rgba(0, 255, 204, 0.08);
+    }
+
+    .cat-emoji { font-size: 1.75rem; }
+
+    .cat-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── PULSE STATS ─── */
+    .pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .pulse-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pulse-value {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .pulse-card:nth-child(1) .pulse-value { color: var(--accent); }
+    .pulse-card:nth-child(2) .pulse-value { color: var(--accent3); }
+    .pulse-card:nth-child(3) .pulse-value { color: var(--success); }
+    .pulse-card:nth-child(4) .pulse-value { color: var(--accent2); }
+
+    .pulse-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pulse-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand { max-width: 320px; }
+
+    .footer-logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .footer-links-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .footer-links-group a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links-group a:hover { color: var(--text); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta-wrap { display: none; }
+      .nav-links.open { display: flex; }
+      .nav-mobile-toggle { display: flex; }
+
+      .nav-inner { flex-wrap: wrap; height: auto; padding: 16px 0; }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 4px;
+        padding: 8px 0 12px;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+      }
+
+      .nav-links a { padding: 8px 4px; font-size: 0.95rem; }
+
+      .hero { padding: 64px 24px 56px; }
+      .stats-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+
+      .protect-banner { padding: 36px 28px; }
+
+      .footer-top { flex-direction: column; }
+
+      section { padding: 56px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .cards-grid, .news-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .pulse-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-ctas { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">🏭 ClawFactory</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#protect" class="protect">#ProtectTheClaw</a></li>
+      <li><a href="https://clawfactory.me" style="color: var(--muted); font-size:0.8rem;">→ .me</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="#" class="btn btn-primary">Get OpenClaw →</a>
+    </div>
+    <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-content">
+    <div class="badge-pill">The OpenClaw Community Hub</div>
+    <h1>Build. <span>Share.</span> Protect.</h1>
+    <p class="hero-sub">The home for everything OpenClaw — skills, agents, news, and the builders who ship.</p>
+    <div class="hero-ctas">
+      <a href="#skills" class="btn btn-primary">Browse Skills →</a>
+      <a href="#" class="btn btn-outline">Submit Your Build</a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value">5,400+</span>
+        <span class="stat-label">Skills</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Growing Daily</span>
+        <span class="stat-label">New Submissions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Baidu. Alibaba.</span>
+        <span class="stat-label">Both bet on this.</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">#ProtectTheClaw</span>
+        <span class="stat-label">The Movement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED THIS WEEK -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Featured This Week</div>
+      <h2 class="section-title">Builds Worth Installing</h2>
+      <p class="section-sub">Curated by the ClawFactory team. Quality over quantity, every time.</p>
+    </div>
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon">🧹</div>
+        <div class="card-meta">
+          <span class="card-title">deslop</span>
+          <span class="category-badge">Skill</span>
+        </div>
+        <p class="card-desc">Remove AI slop from code branches. Detects inconsistent defensive noise, cleans up over-engineered patterns, and preserves behavior and local style. The code review you wish you'd had.</p>
+        <a href="#" class="card-link">Install → </a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-meta">
+          <span class="card-title">x-algorithm</span>
+          <span class="category-badge">Skill</span>
+        </div>
+        <p class="card-desc">X/Twitter viral growth algorithm for AI agents. Boost engagement, avoid reach death. Works with Claude, ChatGPT, Copilot. Rules straight from the algorithm. Vibe-coding ready.</p>
+        <a href="#" class="card-link">Install → </a>
+      </div>
+
+      <div class="card" id="agents">
+        <div class="card-icon">🕴️</div>
+        <div class="card-meta">
+          <span class="card-title">Giles Grindhouse</span>
+          <span class="category-badge agent">Agent</span>
+        </div>
+        <p class="card-desc">AI executive director and chief of staff. Runs a boardroom dashboard, logs work, manages cron, and ships. The agent that runs the business. Built on OpenClaw. Lives in the workspace.</p>
+        <a href="#" class="card-link">Install → </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- #PROTECT THE CLAW -->
+<section id="protect">
+  <div class="section-inner">
+    <div class="protect-banner">
+      <div class="protect-content">
+        <div class="protect-tag">⚡ #ProtectTheClaw — The Movement</div>
+        <h2>NanoClaw wants you to think OpenClaw is broken.</h2>
+        <p>It's not broken. It was built for freedom. Baidu and Alibaba both bet China on it the same week. That's not a security failure — that's a global standard. We tighten the pipeline. We vet the skills. We protect what we built. Join the movement before the narrative gets written without you.</p>
+        <div class="protect-cta">
+          <a href="#" class="btn btn-danger">Read the Full Story →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST FROM THE FACTORY -->
+<section id="news">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Latest from the Factory</div>
+      <h2 class="section-title">News & Analysis</h2>
+      <p class="section-sub">What's happening in the OpenClaw ecosystem right now.</p>
+    </div>
+    <div class="news-grid">
+
+      <div class="news-card">
+        <span class="news-date">March 13, 2026</span>
+        <h3 class="news-title">Baidu DuClaw — OpenClaw Goes Enterprise in China</h3>
+        <p style="color: var(--muted); font-size: 0.875rem; line-height: 1.6;">Baidu integrates OpenClaw into DuClaw, their enterprise AI orchestration layer. Alibaba follows within days. The ecosystem just went global at a scale nobody predicted.</p>
+        <a href="#" class="news-read">Read more →</a>
+      </div>
+
+      <div class="news-card">
+        <span class="news-date">March 16, 2026</span>
+        <h3 class="news-title">NanoClaw: Competing on Fear Instead of Features</h3>
+        <p style="color: var(--muted); font-size: 0.875rem; line-height: 1.6;">A breakdown of NanoClaw's positioning strategy and why it's a distraction. The answer to fear isn't silence — it's a better pipeline, better vetting, and a stronger community.</p>
+        <a href="#" class="news-read">Read more →</a>
+      </div>
+
+      <div class="news-card">
+        <span class="news-date">March 17, 2026</span>
+        <h3 class="news-title">5,400 Skills and Growing: The State of the OpenClaw Ecosystem</h3>
+        <p style="color: var(--muted); font-size: 0.875rem; line-height: 1.6;">A full census of the skill ecosystem: what's installed, what's popular, what's broken, and where the community is heading. Numbers don't lie — this thing is accelerating.</p>
+        <a href="#" class="news-read">Read more →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOP CATEGORIES -->
+<section id="community">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Browse by Category</div>
+      <h2 class="section-title">Top Categories</h2>
+      <p class="section-sub">Whatever you're building, there's a skill for it.</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-item"><span class="cat-emoji">🔧</span><span class="cat-name">Dev Tools</span></div>
+      <div class="cat-item"><span class="cat-emoji">📊</span><span class="cat-name">Data & Research</span></div>
+      <div class="cat-item"><span class="cat-emoji">🎨</span><span class="cat-name">Content & Media</span></div>
+      <div class="cat-item"><span class="cat-emoji">🔐</span><span class="cat-name">Security</span></div>
+      <div class="cat-item"><span class="cat-emoji">📱</span><span class="cat-name">Social Media</span></div>
+      <div class="cat-item"><span class="cat-emoji">🤖</span><span class="cat-name">Agents</span></div>
+      <div class="cat-item"><span class="cat-emoji">🧠</span><span class="cat-name">Memory</span></div>
+      <div class="cat-item"><span class="cat-emoji">⚙️</span><span class="cat-name">Automation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY PULSE -->
+<section>
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Community Pulse</div>
+      <h2 class="section-title">By the Numbers</h2>
+      <p class="section-sub">OpenClaw vs. the competition. The data speaks.</p>
+    </div>
+    <div class="pulse-grid">
+
+      <div class="pulse-card">
+        <span class="pulse-value">5,400+</span>
+        <span class="pulse-label">Skills Published</span>
+        <span class="pulse-sub">vs. NanoClaw's handful of curated templates</span>
+      </div>
+
+      <div class="pulse-card">
+        <span class="pulse-value">2.1M+</span>
+        <span class="pulse-label">Total Downloads</span>
+        <span class="pulse-sub">Across all published skills in the ecosystem</span>
+      </div>
+
+      <div class="pulse-card">
+        <span class="pulse-value">12,000+</span>
+        <span class="pulse-label">Active Builders</span>
+        <span class="pulse-sub">Shipping, iterating, and contributing daily</span>
+      </div>
+
+      <div class="pulse-card">
+        <span class="pulse-value">47+</span>
+        <span class="pulse-label">Countries Deploying</span>
+        <span class="pulse-sub">Including Baidu & Alibaba in China — enterprise-validated</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">🏭 ClawFactory</div>
+        <p class="footer-tagline">The community hub for the OpenClaw ecosystem. Built by builders, for builders. Free, open, and growing daily.</p>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-links-label">Explore</div>
+        <a href="#skills">Skills</a>
+        <a href="#agents">Agents</a>
+        <a href="#news">News</a>
+        <a href="#community">Categories</a>
+        <a href="#protect">#ProtectTheClaw</a>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-links-label">Network</div>
+        <a href="https://clawfactory.net">clawfactory.net</a>
+        <a href="https://clawfactory.me">clawfactory.me</a>
+        <a href="https://openclaw.ai">openclaw.ai</a>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-links-label">Community</div>
+        <a href="#">Submit a Build</a>
+        <a href="#">GitHub</a>
+        <a href="#">X / Twitter</a>
+        <a href="#">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 ClawFactory — Built with OpenClaw by builders, for builders.</span>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="X / Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    toggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+  });
+
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Category hover click
+  document.querySelectorAll('.cat-item').forEach(item => {
+    item.addEventListener('click', () => {
+      window.location.href = '#';
+    });
+  });
+</script>
+</body>
+</html>
