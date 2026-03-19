@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>x-algorithm — ClawFactory</title>
+  <meta name="description" content="X/Twitter algorithm rules and viral strategies for AI agents. Boost engagement, avoid reach death." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0c10; --surface: #111318; --surface2: #181c23; --border: #1e2330;
+      --accent: #00ffcc; --accent2: #9b59b6; --accent3: #f5a623; --text: #e8eaf0; --muted: #6b7280;
+      --success: #22c55e; --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .nav-back { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    .skill-hero { padding: 72px 24px 56px; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245,166,35,0.05) 0%, transparent 70%); }
+    .skill-hero-inner { max-width: 900px; margin: 0 auto; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; }
+    .breadcrumb a { color: var(--accent); }
+    .skill-header { display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+    .skill-icon { font-size: 3rem; line-height: 1; flex-shrink: 0; }
+    .skill-meta { flex: 1; }
+    .badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .badge { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 4px; }
+    .badge-skill { background: rgba(0,255,204,0.1); color: var(--accent); border: 1px solid rgba(0,255,204,0.2); }
+    .badge-cat { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+    .badge-pass { background: rgba(34,197,94,0.1); color: var(--success); border: 1px solid rgba(34,197,94,0.2); }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+    .skill-tagline { font-size: 1.1rem; color: var(--muted); line-height: 1.7; max-width: 600px; margin-bottom: 28px; }
+    .install-block { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: inline-flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .install-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .install-cmd { font-family: 'Fira Mono', 'Courier New', monospace; font-size: 0.95rem; color: var(--accent); font-weight: 600; }
+    .copy-btn { font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; background: none; border: 1px solid var(--border); padding: 5px 12px; border-radius: 6px; font-family: var(--font); transition: all 0.2s; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .content-wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 80px; display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 768px) { .content-wrap { grid-template-columns: 1fr; } }
+
+    .prose h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; margin: 36px 0 16px; color: var(--text); }
+    .prose h2:first-child { margin-top: 0; }
+    .prose p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 16px; }
+    .prose ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .prose ul li { color: var(--muted); font-size: 0.95rem; padding-left: 20px; position: relative; line-height: 1.6; }
+    .prose ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent3); font-weight: 700; }
+
+    .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 88px; }
+    .sidebar-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+    .sidebar-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); }
+    .gate-row { display: flex; align-items: center; justify-content: space-between; }
+    .gate-name { font-size: 0.85rem; color: var(--muted); }
+    .gate-pass { font-size: 0.8rem; font-weight: 700; color: var(--success); }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 600; margin-top: 4px; transition: gap 0.2s; }
+    .back-link:hover { gap: 10px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🏭 ClawFactory</a>
+    <a href="/skills" class="nav-back">← All Skills</a>
+  </div>
+</nav>
+
+<div class="skill-hero">
+  <div class="skill-hero-inner">
+    <div class="breadcrumb"><a href="/">ClawFactory</a> / <a href="/skills">Skills</a> / x-algorithm</div>
+    <div class="skill-header">
+      <div class="skill-icon">📈</div>
+      <div class="skill-meta">
+        <div class="badge-row">
+          <span class="badge badge-skill">Skill</span>
+          <span class="badge badge-cat">Social Media</span>
+          <span class="badge badge-pass">✓ Gate 1 Pass</span>
+          <span class="badge badge-pass">✓ Gate 2 Pass</span>
+          <span class="badge badge-pass">✓ Gate 3 Pass</span>
+        </div>
+        <h1>x-algorithm</h1>
+        <p class="skill-tagline">X/Twitter algorithm rules and viral strategies for AI agents. Boost engagement, avoid reach death. Works with Claude, ChatGPT, Copilot.</p>
+        <div class="install-block">
+          <div>
+            <div class="install-label">Install</div>
+            <div class="install-cmd" id="cmd">clawhub install x-algorithm</div>
+          </div>
+          <button class="copy-btn" onclick="copyCmd()">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="prose">
+    <h2>What it does</h2>
+    <p>x-algorithm gives your AI agent real knowledge of how the X/Twitter feed ranking system works — what boosts reach, what kills it, and how to optimize every post for maximum distribution before it goes out. It's a strategic layer, not a post scheduler.</p>
+
+    <h2>What your agent learns</h2>
+    <ul>
+      <li>Engagement signals the algorithm weights most heavily (replies &gt; retweets &gt; likes)</li>
+      <li>Timing patterns that correlate with top-of-feed placement</li>
+      <li>Hook structures that stop the scroll in the first line</li>
+      <li>Thread formatting that keeps readers through to the CTA</li>
+      <li>What triggers reach suppression and how to avoid it</li>
+      <li>The difference between viral reach and engaged community building</li>
+    </ul>
+
+    <h2>What it's not</h2>
+    <p>This isn't a bot. It doesn't auto-post. It doesn't scrape. It gives your AI agent the strategic context to write better posts and review drafts before you hit send — like having someone who knows the algorithm in the room.</p>
+
+    <h2>Compatibility</h2>
+    <p>Works with any OpenClaw-compatible agent — Claude, GPT, DeepSeek, doesn't matter. Install it once and it activates whenever you're working on X content.</p>
+  </div>
+
+  <aside>
+    <div class="sidebar-card">
+      <div>
+        <div class="sidebar-label">Author</div>
+        <div class="sidebar-value">NextFrontierBuilds</div>
+      </div>
+      <hr class="sidebar-divider" />
+      <div>
+        <div class="sidebar-label">License</div>
+        <div class="sidebar-value">MIT</div>
+      </div>
+      <div>
+        <div class="sidebar-label">Type</div>
+        <div class="sidebar-value">Skill</div>
+      </div>
+      <div>
+        <div class="sidebar-label">Category</div>
+        <div class="sidebar-value">Social Media</div>
+      </div>
+      <hr class="sidebar-divider" />
+      <div>
+        <div class="sidebar-label" style="margin-bottom:12px;">Vetting Gates</div>
+        <div class="gate-row"><span class="gate-name">Gate 1 — Static Scan</span><span class="gate-pass">PASS</span></div>
+        <div style="height:8px;"></div>
+        <div class="gate-row"><span class="gate-name">Gate 2 — Sandbox</span><span class="gate-pass">PASS</span></div>
+        <div style="height:8px;"></div>
+        <div class="gate-row"><span class="gate-name">Gate 3 — Review</span><span class="gate-pass">PASS</span></div>
+      </div>
+      <hr class="sidebar-divider" />
+      <a href="/skills" class="back-link">← All Skills</a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  function copyCmd() {
+    navigator.clipboard.writeText('clawhub install x-algorithm').then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      btn.style.color = 'var(--accent)';
+      setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

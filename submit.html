@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Your Build — ClawFactory</title>
+  <meta name="description" content="Submit your OpenClaw skill or agent to the ClawFactory registry. Every build goes through our 3-gate vetting pipeline before it reaches the community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0c10; --surface: #111318; --surface2: #181c23; --border: #1e2330;
+      --accent: #00ffcc; --accent2: #9b59b6; --text: #e8eaf0; --muted: #6b7280;
+      --success: #22c55e; --danger: #ef4444; --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+    .nav-back { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    .page-hero { padding: 80px 24px 60px; text-align: center; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,204,0.07) 0%, transparent 70%); }
+    .page-hero .eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+    .page-hero p { color: var(--muted); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .gates-strip { display: flex; justify-content: center; gap: 0; max-width: 640px; margin: 40px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .gate { flex: 1; padding: 16px 20px; text-align: center; border-right: 1px solid var(--border); }
+    .gate:last-child { border-right: none; }
+    .gate-num { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 4px; }
+    .gate-label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .gate-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    .form-wrap { max-width: 680px; margin: 64px auto; padding: 0 24px 80px; }
+    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px 44px; }
+    @media (max-width: 600px) { .form-card { padding: 32px 24px; } }
+
+    .field { margin-bottom: 24px; }
+    label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    label span { color: var(--muted); font-weight: 400; margin-left: 4px; }
+    input, select, textarea {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); font-family: var(--font); font-size: 0.95rem; padding: 12px 16px;
+      transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,255,204,0.1); }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    select option { background: var(--surface2); }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 20px; }
+
+    .btn-submit { width: 100%; background: var(--accent); color: #0a0c10; font-family: var(--font); font-size: 1rem; font-weight: 800; padding: 16px; border: none; border-radius: 8px; cursor: pointer; transition: opacity 0.2s, transform 0.2s; letter-spacing: -0.01em; }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .fine-print { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 16px; line-height: 1.5; }
+
+    .success-box { display: none; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.3); border-radius: 12px; padding: 32px; text-align: center; margin-top: 24px; }
+    .success-box h3 { font-size: 1.2rem; font-weight: 700; color: var(--success); margin-bottom: 8px; }
+    .success-box p { color: var(--muted); font-size: 0.95rem; }
+
+    .error-box { display: none; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 16px; text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--danger); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🏭 ClawFactory</a>
+    <a href="/" class="nav-back">← Back to Hub</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="eyebrow">Submissions</div>
+  <h1>Submit Your Build</h1>
+  <p>Every skill and agent submitted to ClawFactory goes through our 3-gate vetting pipeline before reaching the community.</p>
+  <div class="gates-strip">
+    <div class="gate">
+      <div class="gate-num">Gate 1</div>
+      <div class="gate-label">Static Scan</div>
+      <div class="gate-sub">Automated safety analysis</div>
+    </div>
+    <div class="gate">
+      <div class="gate-num">Gate 2</div>
+      <div class="gate-label">Sandbox Run</div>
+      <div class="gate-sub">Isolated execution test</div>
+    </div>
+    <div class="gate">
+      <div class="gate-num">Gate 3</div>
+      <div class="gate-label">Human Review</div>
+      <div class="gate-sub">ClawFactory team sign-off</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap">
+  <div class="form-card">
+    <div class="section-label">Your Info</div>
+    <div class="field-row">
+      <div class="field">
+        <label for="name">Your Name <span>*</span></label>
+        <input type="text" id="name" placeholder="Jane Builder" required />
+      </div>
+      <div class="field">
+        <label for="email">Email <span>*</span></label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+    </div>
+
+    <hr class="divider" />
+    <div class="section-label">Your Build</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="project_name">Build Name <span>*</span></label>
+        <input type="text" id="project_name" placeholder="my-awesome-skill" required />
+      </div>
+      <div class="field">
+        <label for="project_type">Type <span>*</span></label>
+        <select id="project_type" required>
+          <option value="" disabled selected>Select type...</option>
+          <option value="skill">Skill</option>
+          <option value="agent">Agent</option>
+          <option value="toolkit">Toolkit</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="repo_url">GitHub / Repo URL <span>*</span></label>
+      <input type="url" id="repo_url" placeholder="https://github.com/you/your-skill" required />
+    </div>
+
+    <div class="field">
+      <label for="description">What does it do? <span>*</span></label>
+      <textarea id="description" placeholder="Describe what your build does, what problem it solves, and how it works..." rows="4" required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="self_assessment">Self-Assessment <span>(any known issues, limitations, or risks)</span></label>
+      <textarea id="self_assessment" placeholder="Be honest — the vetting pipeline will find things anyway. Known issues, scope limitations, anything the reviewer should know..." rows="3"></textarea>
+    </div>
+
+    <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">Submit for Review →</button>
+    <p class="fine-print">Your build enters the Gate 1 queue immediately. You'll hear back within 48 hours.</p>
+
+    <div class="success-box" id="successBox">
+      <h3>✅ Submission received.</h3>
+      <p>You're in the queue. Gate 1 scan starts shortly. We'll be in touch.</p>
+    </div>
+    <div class="error-box" id="errorBox">Something went wrong. Try again or email us directly.</div>
+  </div>
+</div>
+
+<script>
+  const API = 'https://api.clawfactory.net';
+
+  async function handleSubmit() {
+    const btn = document.getElementById('submitBtn');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+
+    const fields = ['name','email','project_name','project_type','repo_url','description'];
+    for (const f of fields) {
+      if (!document.getElementById(f).value.trim()) {
+        document.getElementById(f).focus();
+        return;
+      }
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    errorBox.style.display = 'none';
+
+    try {
+      const res = await fetch(`${API}/api/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:            document.getElementById('name').value,
+          email:           document.getElementById('email').value,
+          project_name:    document.getElementById('project_name').value,
+          project_type:    document.getElementById('project_type').value,
+          repo_url:        document.getElementById('repo_url').value,
+          description:     document.getElementById('description').value,
+          self_assessment: document.getElementById('self_assessment').value,
+        })
+      });
+      if (!res.ok) throw new Error(res.status);
+      btn.style.display = 'none';
+      successBox.style.display = 'block';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Submit for Review →';
+      errorBox.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

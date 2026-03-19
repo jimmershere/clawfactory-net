@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — ClawFactory</title>
+  <meta name="description" content="News and analysis from the OpenClaw ecosystem. What's happening, what it means, and what's next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0c10; --surface: #111318; --surface2: #181c23; --border: #1e2330;
+      --accent: #00ffcc; --accent2: #9b59b6; --accent3: #f5a623; --text: #e8eaf0; --muted: #6b7280;
+      --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .nav-right { display: flex; gap: 20px; align-items: center; }
+    .nav-link { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .nav-link:hover { color: var(--text); }
+
+    .page-hero { padding: 72px 24px 56px; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,255,204,0.06) 0%, transparent 70%); }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+    .hero-sub { color: var(--muted); font-size: 1rem; max-width: 480px; }
+
+    .news-section { padding: 56px 24px 80px; }
+    .news-inner { max-width: 1200px; margin: 0 auto; }
+
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+
+    .news-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .news-card:hover { border-color: rgba(0,255,204,0.3); box-shadow: 0 4px 24px rgba(0,255,204,0.07); transform: translateY(-2px); }
+
+    .news-meta { display: flex; align-items: center; gap: 12px; }
+    .news-date { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .news-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; }
+    .tag-ecosystem { background: rgba(0,255,204,0.08); color: var(--accent); border: 1px solid rgba(0,255,204,0.2); }
+    .tag-analysis { background: rgba(155,89,182,0.1); color: var(--accent2); border: 1px solid rgba(155,89,182,0.2); }
+    .tag-community { background: rgba(245,166,35,0.1); color: var(--accent3); border: 1px solid rgba(245,166,35,0.2); }
+
+    .news-title { font-size: 1.1rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+    .news-excerpt { color: var(--muted); font-size: 0.9rem; line-height: 1.7; flex: 1; }
+    .news-read { color: var(--accent); font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; transition: gap 0.2s; }
+    .news-card:hover .news-read { gap: 8px; }
+
+    .coming-soon-banner { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 32px; text-align: center; margin-top: 40px; }
+    .coming-soon-banner p { color: var(--muted); font-size: 0.95rem; }
+    .coming-soon-banner strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🏭 ClawFactory</a>
+    <div class="nav-right">
+      <a href="/skills" class="nav-link">Skills</a>
+      <a href="/submit" class="nav-link">Submit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">Latest from the Factory</div>
+    <h1>News & Analysis</h1>
+    <p class="hero-sub">What's happening in the OpenClaw ecosystem right now. No hype, no fluff.</p>
+  </div>
+</div>
+
+<div class="news-section">
+  <div class="news-inner">
+    <div class="news-grid">
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-date">March 13, 2026</span>
+          <span class="news-tag tag-ecosystem">Ecosystem</span>
+        </div>
+        <h2 class="news-title">Baidu DuClaw — OpenClaw Goes Enterprise in China</h2>
+        <p class="news-excerpt">Baidu integrates OpenClaw into DuClaw, their enterprise AI orchestration layer. Alibaba follows within days. The ecosystem just went global at a scale nobody predicted. What it means for builders and why the timing matters.</p>
+        <span class="news-read">Full article coming soon →</span>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-date">March 16, 2026</span>
+          <span class="news-tag tag-analysis">Analysis</span>
+        </div>
+        <h2 class="news-title">NanoClaw: Competing on Fear Instead of Features</h2>
+        <p class="news-excerpt">A breakdown of NanoClaw's positioning strategy and why it's a distraction. The answer to fear isn't silence — it's a better pipeline, better vetting, and a stronger community. Here's the counter-argument.</p>
+        <span class="news-read">Full article coming soon →</span>
+      </div>
+
+      <div class="news-card">
+        <div class="news-meta">
+          <span class="news-date">March 17, 2026</span>
+          <span class="news-tag tag-community">Community</span>
+        </div>
+        <h2 class="news-title">5,400 Skills and Growing: The State of the Ecosystem</h2>
+        <p class="news-excerpt">A full census of the skill ecosystem: what's installed, what's popular, what's broken, and where the community is heading. Numbers don't lie — this thing is accelerating and the builders behind it are just getting started.</p>
+        <span class="news-read">Full article coming soon →</span>
+      </div>
+
+    </div>
+
+    <div class="coming-soon-banner">
+      <p><strong>More articles coming.</strong> ClawFactory news coverage is ramping up. Check back or follow <a href="https://x.com/openclaw" target="_blank" rel="noopener" style="color:var(--accent);">@openclaw on X</a> for updates.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
