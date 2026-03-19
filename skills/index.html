@@ -151,6 +151,15 @@
 </div>
 
 <script>
+  // Auto-apply filter from URL param on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const p = new URLSearchParams(window.location.search).get('filter');
+    if (p) {
+      const btn = document.querySelector(`.filter-btn[data-filter="${p}"]`);
+      if (btn) filter(p, btn);
+    }
+  });
+
   function filter(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
