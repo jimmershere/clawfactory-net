@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoClaw Hub — ClawFactory</title>
+  <meta name="description" content="The ClawFactory NanoClaw resource hub. Skills, guides, and community for the secure container-first AI agent platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0c10;
+      --surface: #111318;
+      --surface2: #181c23;
+      --border: #1e2330;
+      --nano: #f97316;        /* NanoClaw orange */
+      --nano-dim: rgba(249,115,22,0.12);
+      --nano-border: rgba(249,115,22,0.3);
+      --claw: #00ffcc;        /* OpenClaw teal */
+      --claw-dim: rgba(0,255,204,0.08);
+      --accent2: #9b59b6;
+      --text: #e8eaf0;
+      --muted: #6b7280;
+      --success: #22c55e;
+      --font: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--claw); letter-spacing: -0.02em; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.nano { color: var(--nano); }
+    .nav-link.nano:hover { color: #fb923c; }
+
+    /* HERO — split orange/teal */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 72px;
+      background:
+        radial-gradient(ellipse 60% 70% at 20% 50%, rgba(249,115,22,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(0,255,204,0.06) 0%, transparent 60%),
+        var(--bg);
+    }
+    .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%); pointer-events: none; }
+    .hero-inner { position: relative; max-width: 1100px; margin: 0 auto; text-align: center; }
+
+    .platform-pills { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
+    .pill { display: flex; align-items: center; gap: 10px; padding: 10px 22px; border-radius: 100px; font-size: 0.875rem; font-weight: 700; border: 1.5px solid; }
+    .pill-nano { background: var(--nano-dim); border-color: var(--nano-border); color: var(--nano); }
+    .pill-claw { background: var(--claw-dim); border-color: rgba(0,255,204,0.3); color: var(--claw); }
+    .pill-logo { width: 20px; height: 20px; border-radius: 4px; object-fit: contain; }
+    .pill-plus { font-size: 1.4rem; color: var(--muted); font-weight: 300; }
+
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    .hero h1 .nano { color: var(--nano); }
+    .hero h1 .claw { color: var(--claw); }
+    .hero-sub { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px; line-height: 1.75; }
+
+    .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; transition: all 0.2s; }
+    .btn-nano { background: var(--nano); color: #0a0c10; }
+    .btn-nano:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-claw { background: var(--claw); color: #0a0c10; }
+    .btn-claw:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { border-color: var(--nano); color: var(--nano); }
+
+    /* SPLIT COMPARE */
+    .compare-section { padding: 80px 24px; }
+    .compare-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 48px; }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+
+    .compare-card { border-radius: 16px; padding: 36px 32px; border: 1.5px solid; }
+    .compare-card.nano-card { background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, rgba(249,115,22,0.02) 100%); border-color: var(--nano-border); }
+    .compare-card.claw-card { background: linear-gradient(135deg, rgba(0,255,204,0.05) 0%, rgba(0,255,204,0.01) 100%); border-color: rgba(0,255,204,0.25); }
+
+    .card-platform { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .platform-icon { font-size: 1.8rem; line-height: 1; }
+    .platform-name { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; }
+    .platform-name.nano { color: var(--nano); }
+    .platform-name.claw { color: var(--claw); }
+    .platform-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; margin-left: 4px; }
+    .tag-nano { background: var(--nano-dim); color: var(--nano); border: 1px solid var(--nano-border); }
+    .tag-claw { background: var(--claw-dim); color: var(--claw); border: 1px solid rgba(0,255,204,0.2); }
+
+    .compare-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; }
+    .strength-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .strength-list li { font-size: 0.9rem; color: var(--muted); padding-left: 20px; position: relative; line-height: 1.5; }
+    .strength-list li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
+    .nano-card .strength-list li::before { color: var(--nano); }
+    .claw-card .strength-list li::before { color: var(--claw); }
+
+    /* DIVIDER */
+    .harmony-divider { padding: 64px 24px; background: var(--surface); }
+    .harmony-inner { max-width: 820px; margin: 0 auto; text-align: center; }
+    .harmony-icon { font-size: 3rem; margin-bottom: 16px; }
+    .harmony-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .harmony-title .nano { color: var(--nano); }
+    .harmony-title .claw { color: var(--claw); }
+    .harmony-body { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 640px; margin: 0 auto; }
+
+    /* SKILLS */
+    .skills-section { padding: 80px 24px; }
+    .skills-inner { max-width: 1100px; margin: 0 auto; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+    .skill-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .skill-card:hover { transform: translateY(-2px); }
+    .skill-card.nano-skill:hover { border-color: var(--nano); box-shadow: 0 0 24px rgba(249,115,22,0.12); }
+    .skill-card.claw-skill:hover { border-color: var(--claw); box-shadow: 0 0 24px rgba(0,255,204,0.1); }
+    .skill-card.both-skill:hover { border-color: var(--accent2); box-shadow: 0 0 24px rgba(155,89,182,0.12); }
+    .skill-icon { font-size: 2rem; }
+    .skill-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .skill-name { font-size: 1.05rem; font-weight: 700; }
+    .compat-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 7px; border-radius: 3px; }
+    .compat-nano { background: var(--nano-dim); color: var(--nano); border: 1px solid var(--nano-border); }
+    .compat-claw { background: var(--claw-dim); color: var(--claw); border: 1px solid rgba(0,255,204,0.2); }
+    .compat-both { background: rgba(155,89,182,0.1); color: #b97fd6; border: 1px solid rgba(155,89,182,0.25); }
+    .skill-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; flex: 1; }
+    .skill-link { font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+    .skill-card.nano-skill .skill-link { color: var(--nano); }
+    .skill-card.claw-skill .skill-link { color: var(--claw); }
+    .skill-card.both-skill .skill-link { color: #b97fd6; }
+    .skill-card:hover .skill-link { gap: 8px; }
+
+    .coming-soon-strip { background: var(--surface); border: 1px dashed var(--border); border-radius: 10px; padding: 24px; text-align: center; margin-top: 20px; }
+    .coming-soon-strip p { color: var(--muted); font-size: 0.9rem; }
+    .coming-soon-strip a { color: var(--nano); font-weight: 600; }
+
+    /* SUBMIT CTA */
+    .submit-section { padding: 80px 24px; background: var(--surface); }
+    .submit-inner { max-width: 820px; margin: 0 auto; }
+    .submit-box { background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(0,255,204,0.05) 100%); border: 1px solid var(--nano-border); border-radius: 16px; padding: 56px 48px; text-align: center; }
+    @media (max-width: 600px) { .submit-box { padding: 36px 24px; } }
+    .submit-box h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .submit-box p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 40px 24px 28px; text-align: center; }
+    footer p { font-size: 0.85rem; color: var(--muted); }
+    footer a { color: var(--claw); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🏭 ClawFactory</a>
+    <div class="nav-right">
+      <a href="/skills" class="nav-link">Skills</a>
+      <a href="/news" class="nav-link">News</a>
+      <a href="https://nanoclaw.dev" target="_blank" rel="noopener" class="nav-link nano">nanoclaw.dev ↗</a>
+      <a href="/submit" style="background:var(--nano);color:#0a0c10;font-weight:700;font-size:0.85rem;padding:8px 18px;border-radius:6px;">Submit a Build →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="platform-pills">
+      <div class="pill pill-nano">
+        <img src="https://raw.githubusercontent.com/qwibitai/nanoclaw/main/assets/nanoclaw-icon.png" class="pill-logo" alt="NanoClaw" onerror="this.style.display='none'" />
+        NanoClaw
+      </div>
+      <span class="pill-plus">+</span>
+      <div class="pill pill-claw">
+        🦞 OpenClaw
+      </div>
+    </div>
+    <h1>One Factory.<br><span class="nano">Two</span> Great <span class="claw">Platforms.</span></h1>
+    <p class="hero-sub">ClawFactory supports both OpenClaw and NanoClaw — the two leading personal AI agent platforms. Vetted skills, real community, and a pipeline that works for both.</p>
+    <div class="hero-ctas">
+      <a href="#nanoclaw-skills" class="btn btn-nano">Browse NanoClaw Skills →</a>
+      <a href="/skills" class="btn btn-claw">Browse OpenClaw Skills →</a>
+      <a href="/submit" class="btn btn-outline">Submit Your Build</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare-section">
+  <div class="compare-inner">
+    <div class="section-eyebrow">The Platforms</div>
+    <h2 class="section-title">Different architectures. Same mission.</h2>
+    <p class="section-sub">OpenClaw and NanoClaw both exist to give you a real AI assistant that does things. They just take different roads to get there.</p>
+    <div class="compare-grid">
+
+      <div class="compare-card nano-card">
+        <div class="card-platform">
+          <img src="https://raw.githubusercontent.com/qwibitai/nanoclaw/main/assets/nanoclaw-icon.png" style="width:40px;height:40px;border-radius:8px;object-fit:contain;" alt="NanoClaw" onerror="this.textContent='🔒';this.style.fontSize='2rem';" />
+          <div>
+            <span class="platform-name nano">NanoClaw</span>
+            <span class="platform-tag tag-nano">Container-first</span>
+          </div>
+        </div>
+        <p>Built by Gavriel Cohen in January 2026. ~3,900 lines of code across 15 files. Every agent session runs in its own Docker or Apple Container — OS-level isolation by default. Karpathy called it "manageable, auditable, flexible." 24k+ GitHub stars and growing fast.</p>
+        <ul class="strength-list">
+          <li>OS-level container isolation — agents can't touch what you don't mount</li>
+          <li>Tiny, readable codebase — understand it in under an hour</li>
+          <li>Built on Anthropic's Claude Agent SDK natively</li>
+          <li>Per-group memory isolation</li>
+          <li>Docker + Apple Container support</li>
+          <li>Agent swarms — first personal AI to support this</li>
+        </ul>
+      </div>
+
+      <div class="compare-card claw-card">
+        <div class="card-platform">
+          <div style="font-size:2rem;line-height:1;">🦞</div>
+          <div>
+            <span class="platform-name claw">OpenClaw</span>
+            <span class="platform-tag tag-claw">Ecosystem-first</span>
+          </div>
+        </div>
+        <p>The original personal AI agent platform. 5,400+ skills, 2.1M+ downloads, deployed by Baidu and Alibaba at enterprise scale. Rich channel support, cron scheduling, tiered memory, and the most mature skill ecosystem in the space. The platform with the biggest surface area.</p>
+        <ul class="strength-list">
+          <li>5,400+ skills — largest ecosystem by far</li>
+          <li>Multi-channel: Telegram, Discord, WhatsApp, Signal, Slack</li>
+          <li>Cron scheduling, heartbeat monitoring, workspace memory</li>
+          <li>Enterprise-validated by Baidu and Alibaba</li>
+          <li>ClawHub skill marketplace + active community</li>
+          <li>Sub-agents, ACP harness, coding agents</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HARMONY -->
+<div class="harmony-divider">
+  <div class="harmony-inner">
+    <div class="harmony-icon">🎵</div>
+    <h2 class="harmony-title"><span class="nano">Ebony</span> and <span class="claw">Ivory</span></h2>
+    <p class="harmony-body">The "claw wars" narrative is a media creation. Two great tools built by different people for different philosophies — container security vs ecosystem breadth — aren't enemies. They're options. ClawFactory exists to support builders on both, vet the work that comes from both, and let the community decide what wins on merit.</p>
+  </div>
+</div>
+
+<!-- NANOCLAW SKILLS -->
+<section class="skills-section" id="nanoclaw-skills">
+  <div class="skills-inner">
+    <div class="section-eyebrow">Registry</div>
+    <h2 class="section-title">NanoClaw Skills</h2>
+    <p class="section-sub">Vetted skills built for NanoClaw's container-first architecture. Every one passes our 3-gate pipeline.</p>
+
+    <div class="skills-grid">
+
+      <div class="skill-card nano-skill">
+        <div class="skill-icon">🔒</div>
+        <div class="skill-meta">
+          <span class="skill-name">container-hardener</span>
+          <span class="compat-badge compat-nano">NanoClaw</span>
+        </div>
+        <p class="skill-desc">Tighten your NanoClaw container mounts. Audits your docker-compose config, flags over-permissioned mounts, and outputs a hardened config with minimal filesystem exposure.</p>
+        <a href="/submit" class="skill-link">Coming soon — Submit yours →</a>
+      </div>
+
+      <div class="skill-card both-skill">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-meta">
+          <span class="skill-name">cross-platform-memory</span>
+          <span class="compat-badge compat-both">Both Platforms</span>
+        </div>
+        <p class="skill-desc">Tiered memory architecture that works on OpenClaw and NanoClaw. Hot/warm/cold tiers, daily notes, long-term distillation. Your agent remembers across sessions, regardless of platform.</p>
+        <a href="/submit" class="skill-link">Coming soon — Submit yours →</a>
+      </div>
+
+      <div class="skill-card nano-skill">
+        <div class="skill-icon">🐝</div>
+        <div class="skill-meta">
+          <span class="skill-name">swarm-coordinator</span>
+          <span class="compat-badge compat-nano">NanoClaw</span>
+        </div>
+        <p class="skill-desc">Orchestrate NanoClaw's agent swarm feature. Spawn specialized sub-agents, assign roles, aggregate results. Complex multi-step tasks, delegated cleanly.</p>
+        <a href="/submit" class="skill-link">Coming soon — Submit yours →</a>
+      </div>
+
+    </div>
+
+    <div class="coming-soon-strip">
+      <p>NanoClaw skills are arriving. <strong>Be the first builder in this category.</strong> <a href="/submit">Submit your NanoClaw skill →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMIT CTA -->
+<section class="submit-section">
+  <div class="submit-inner">
+    <div class="submit-box">
+      <h2>Built something for NanoClaw?</h2>
+      <p>Submit it to ClawFactory. It'll go through our 3-gate vetting pipeline and land in the registry — visible to the entire NanoClaw and OpenClaw community.</p>
+      <a href="/submit" class="btn btn-nano">Submit Your NanoClaw Build →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>ClawFactory — The platform-agnostic skill hub for <a href="https://openclaw.ai" target="_blank" rel="noopener">OpenClaw</a> and <a href="https://nanoclaw.dev" target="_blank" rel="noopener">NanoClaw</a>. <a href="/">← Back to Hub</a></p>
+</footer>
+
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NanoClaw: Competing on Fear Instead of Features — ClawFactory</title>
-  <meta name="description" content="NanoClaw wants you to think OpenClaw is broken. It's not. A breakdown of the positioning strategy, why it's wrong, and what the community is actually doing about security." />
+  <title>NanoClaw and OpenClaw: The Claw Ecosystem Doesn't Need a War — ClawFactory</title>
+  <meta name="description" content="NanoClaw is real, it's good, and it solves real problems. OpenClaw is real, it's good, and it solves different ones. Here's why the ecosystem wins when both thrive." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -12,8 +12,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0a0c10; --surface: #111318; --surface2: #181c23; --border: #1e2330;
-      --accent: #00ffcc; --accent2: #9b59b6; --accent3: #f5a623; --text: #e8eaf0; --muted: #6b7280;
-      --danger: #ef4444; --font: 'Inter', sans-serif;
+      --nano: #f97316; --claw: #00ffcc; --accent2: #9b59b6;
+      --text: #e8eaf0; --muted: #6b7280; --font: 'Inter', sans-serif;
     }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -21,47 +21,72 @@
 
     nav { position: sticky; top: 0; z-index: 100; background: rgba(10,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 24px; }
     .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--claw); }
     .nav-back { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
 
-    .article-hero { padding: 72px 24px 56px; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(155,89,182,0.07) 0%, transparent 70%); }
+    .article-hero {
+      padding: 72px 24px 56px;
+      background:
+        radial-gradient(ellipse 50% 60% at 20% 50%, rgba(249,115,22,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(0,255,204,0.05) 0%, transparent 60%);
+    }
     .article-hero-inner { max-width: 760px; margin: 0 auto; }
     .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; }
-    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a { color: var(--claw); }
     .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
     .article-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 4px; background: rgba(155,89,182,0.1); color: var(--accent2); border: 1px solid rgba(155,89,182,0.2); }
     .article-date { font-size: 0.8rem; color: var(--muted); }
     .article-read-time { font-size: 0.8rem; color: var(--muted); }
     h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+    h1 .nano { color: var(--nano); }
+    h1 .claw { color: var(--claw); }
     .article-byline { font-size: 0.875rem; color: var(--muted); }
-    .article-byline strong { color: var(--accent); }
+    .article-byline strong { color: var(--claw); }
 
     .article-body { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
-
     .article-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 24px; }
     .article-body p strong { color: var(--text); }
     .article-body h2 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin: 48px 0 16px; line-height: 1.25; }
-    .article-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 32px 0 12px; }
+    .article-body h2 .nano { color: var(--nano); }
+    .article-body h2 .claw { color: var(--claw); }
 
     .article-body ul { list-style: none; margin: 0 0 24px; display: flex; flex-direction: column; gap: 12px; }
     .article-body ul li { color: var(--muted); font-size: 1rem; padding-left: 22px; position: relative; line-height: 1.7; }
-    .article-body ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .article-body ul li.nano-point::before { content: '🟠'; position: absolute; left: 0; font-size: 0.7rem; top: 5px; }
+    .article-body ul li.claw-point::before { content: '🟢'; position: absolute; left: 0; font-size: 0.7rem; top: 5px; }
+    .article-body ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-weight: 700; }
 
-    .callout { background: var(--surface); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; }
-    .callout p { margin: 0; font-size: 1rem; color: var(--text); line-height: 1.7; font-style: italic; }
+    .split-callout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    @media (max-width: 580px) { .split-callout { grid-template-columns: 1fr; } }
+    .callout-nano { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.25); border-radius: 10px; padding: 20px 22px; }
+    .callout-claw { background: rgba(0,255,204,0.05); border: 1px solid rgba(0,255,204,0.2); border-radius: 10px; padding: 20px 22px; }
+    .callout-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .callout-nano .callout-label { color: var(--nano); }
+    .callout-claw .callout-label { color: var(--claw); }
+    .callout-nano p, .callout-claw p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
 
-    .protect-box { background: linear-gradient(135deg, rgba(155,89,182,0.12) 0%, rgba(239,68,68,0.07) 100%); border: 1px solid rgba(155,89,182,0.3); border-radius: 12px; padding: 32px; margin: 40px 0; text-align: center; }
-    .protect-box h3 { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 12px; }
-    .protect-box p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; }
-    .protect-tag-display { font-size: 1.4rem; font-weight: 900; color: var(--accent2); letter-spacing: -0.02em; }
+    .harmony-box { background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(0,255,204,0.05) 100%); border: 1px solid rgba(155,89,182,0.3); border-radius: 12px; padding: 32px; margin: 40px 0; text-align: center; }
+    .harmony-box .music { font-size: 2rem; margin-bottom: 12px; }
+    .harmony-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .harmony-box p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
 
-    .article-footer { border-top: 1px solid var(--border); padding-top: 40px; margin-top: 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 20px; }
+    .cta-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin: 40px 0; text-align: center; }
+    .cta-box h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .cta-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 7px; font-size: 0.9rem; font-weight: 700; transition: all 0.2s; }
+    .btn-nano { background: var(--nano); color: #0a0c10; }
+    .btn-nano:hover { opacity: 0.88; }
+    .btn-claw { background: var(--claw); color: #0a0c10; }
+    .btn-claw:hover { opacity: 0.88; }
+
+    .article-footer { border-top: 1px solid var(--border); padding-top: 40px; margin-top: 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
     .author-card { display: flex; align-items: center; gap: 14px; }
-    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--claw); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
     .author-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
     .author-title { font-size: 0.8rem; color: var(--muted); }
-    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 600; transition: gap 0.2s; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--claw); font-size: 0.875rem; font-weight: 600; transition: gap 0.2s; }
     .back-link:hover { gap: 10px; }
   </style>
 </head>
@@ -79,74 +104,77 @@
     <div class="breadcrumb"><a href="/">ClawFactory</a> / <a href="/news">News</a> / Analysis</div>
     <div class="article-meta">
       <span class="article-tag">Analysis</span>
-      <span class="article-date">March 16, 2026</span>
+      <span class="article-date">March 19, 2026</span>
       <span class="article-read-time">· 5 min read</span>
     </div>
-    <h1>NanoClaw: Competing on Fear Instead of Features</h1>
+    <h1>The Claw Ecosystem<br>Doesn't Need a <span class="nano">War</span>.</h1>
     <p class="article-byline">By <strong>ClawFactory Editorial</strong></p>
   </div>
 </div>
 
 <div class="article-body">
 
-  <p>There's a new competitor in the OpenClaw space, and their opening move wasn't to build something better. It was to tell you OpenClaw is broken.</p>
+  <p>We want to set the record straight. An earlier version of this article framed NanoClaw as a competitor running on fear. That was wrong — and frankly, it was the kind of take that makes the whole ecosystem smaller.</p>
 
-  <p>That's worth examining — not because the concern is illegitimate, but because <strong>the framing is a strategy, not a diagnosis.</strong> And if you're a builder in this ecosystem, you deserve to understand the difference.</p>
+  <p><strong>NanoClaw is a good piece of software.</strong> It solves a real problem. It deserves a fair look. And the builders using it deserve a community hub as much as anyone else.</p>
 
-  <h2>What NanoClaw is actually saying</h2>
+  <h2>What NanoClaw actually is</h2>
 
-  <p>The pitch goes roughly like this: OpenClaw's open skill ecosystem is a security liability. Anyone can publish a skill. Skills can do dangerous things. Therefore, you need a curated, gated, controlled alternative.</p>
+  <p>Gavriel Cohen built NanoClaw in January 2026 to answer a genuine architectural question: what if every agent session ran in its own container, with OS-level isolation, instead of application-level permission checks?</p>
 
-  <p>That's not wrong on the surface. Open ecosystems do have real security surface area. Npm has had supply chain attacks. PyPI has had malicious packages. This is a real problem that real teams have to think about.</p>
+  <p>The answer is 15 source files, ~3,900 lines of code, and a codebase Andrej Karpathy described as "manageable, auditable, flexible." 24,000+ GitHub stars in weeks. Docker partnership. Real traction. This is not a marketing play — it's a thoughtful piece of engineering that makes a different set of tradeoffs than OpenClaw.</p>
 
-  <p>But here's what the pitch doesn't mention:</p>
-
-  <ul>
-    <li>OpenClaw already has a skill vetting ecosystem — ClawFactory's 3-gate pipeline is exactly that</li>
-    <li>The "controlled" alternative means one company controls what you can and can't install</li>
-    <li>Baidu and Alibaba — enterprises with more security requirements than most Western companies — both evaluated the options and chose OpenClaw the same week</li>
-    <li>Fear is easier to sell than features when your feature list is short</li>
-  </ul>
-
-  <h2>The enterprise validation nobody is talking about</h2>
-
-  <p>In the span of one week in March 2026, both Baidu (DuClaw) and Alibaba independently deployed OpenClaw as the foundation for their enterprise AI orchestration layers. Not a pilot. Not an experiment. Production, at scale, inside two of the largest technology companies on earth — operating under Chinese data sovereignty requirements that are stricter than GDPR.</p>
-
-  <div class="callout">
-    <p>"If OpenClaw had fundamental security problems, it would not have cleared Baidu's security review. Full stop. These are not naive buyers."</p>
+  <div class="split-callout">
+    <div class="callout-nano">
+      <div class="callout-label">🟠 NanoClaw's bet</div>
+      <p>OS-level container isolation is fundamentally safer than application-level checks. Keep the codebase small enough to understand and audit. Security through minimalism.</p>
+    </div>
+    <div class="callout-claw">
+      <div class="callout-label">🟢 OpenClaw's bet</div>
+      <p>Ecosystem breadth compounds. 5,400+ skills, enterprise validation, and a mature community create value that a minimal codebase can't replicate quickly. Power through surface area.</p>
+    </div>
   </div>
 
-  <p>NanoClaw's narrative positions itself as the "secure" choice. But enterprise security teams don't buy narratives — they buy audits, architecture reviews, and track records. OpenClaw passed those reviews. Twice. In the same week. At the enterprise scale that actually matters.</p>
+  <p>Both bets are defensible. Neither is wrong. They're different philosophies for different users.</p>
 
-  <h2>What the community is actually doing</h2>
+  <h2>The security narrative — and why it's more nuanced than the headlines</h2>
 
-  <p>The honest answer to the security question isn't "close the ecosystem." It's "build better tooling inside it." That's what ClawFactory is.</p>
+  <p>Real incidents happened with OpenClaw. Summer Yue at Meta had an agent run amok and delete her inbox. That's serious. The community took it seriously. ClawFactory's entire 3-gate vetting pipeline exists as a direct response to the reality that an open skill ecosystem needs community-enforced standards, not just platform-level controls.</p>
 
-  <p>Every skill in our registry passes a 3-gate vetting pipeline before it reaches a builder:</p>
+  <p>But container isolation isn't a silver bullet either. An agent that can only see what you explicitly mount is safer — and also more constrained. The tradeoff is real. NanoClaw's skills ecosystem is nascent. OpenClaw's is vast but noisier. Neither is finished.</p>
+
+  <h2>What the "claw wars" narrative gets wrong</h2>
+
+  <p>Tech media loves a horse race. OpenClaw vs. NanoClaw vs. NemoClaw makes for clean content. But the people building with these tools don't live in that frame. Builders pick what works for their threat model, their use case, their skill level. Some will run both.</p>
+
+  <p><strong>The ecosystem wins when both platforms have strong communities, strong tooling, and strong vetting.</strong> A NanoClaw builder who can't find vetted skills is a problem for the whole space. An OpenClaw builder who can't trust what they install is too.</p>
+
+  <div class="harmony-box">
+    <div class="music">🎵</div>
+    <h3>Ebony and Ivory</h3>
+    <p>Two great platforms, built by different people, for different philosophies. Container security and ecosystem breadth aren't enemies — they're options. ClawFactory is here for both.</p>
+  </div>
+
+  <h2>What ClawFactory is doing about it</h2>
+
+  <p>We're building the platform-agnostic skill hub the "claw" ecosystem needs. That means:</p>
 
   <ul>
-    <li><strong>Gate 1 — Static Scan:</strong> Automated safety analysis, permission scope review, suspicious pattern detection</li>
-    <li><strong>Gate 2 — Sandbox Execution:</strong> Isolated bwrap environment, behavioral analysis, network and filesystem monitoring</li>
-    <li><strong>Gate 3 — Human Review:</strong> ClawFactory team sign-off before anything goes public</li>
+    <li>A NanoClaw skills registry, vetted through the same 3-gate pipeline as OpenClaw skills</li>
+    <li>Honest comparison content — what each platform is actually good at, without tribalism</li>
+    <li>A submission pipeline that works for builders on either platform</li>
+    <li>Community infrastructure that belongs to neither company</li>
   </ul>
 
-  <p>This doesn't restrict what you can build. It gives you a signal you can trust about what other people built. That's a meaningful difference from a walled garden that simply decides for you.</p>
+  <p>The goal is simple: if you build something good for the "claw" ecosystem — on either platform — ClawFactory should be the place that vets it, lists it, and connects you to the community that needs it.</p>
 
-  <h2>The real question to ask</h2>
-
-  <p>When any company leads with fear, the right question is: <em>what are they not showing you?</em></p>
-
-  <p>A product that wins on merit talks about what it does. A product that wins on fear talks about what the competition doesn't do. NanoClaw's positioning is almost entirely the latter. That tells you something about where their confidence actually lives.</p>
-
-  <p>OpenClaw is not perfect. No open ecosystem is. But the answer to imperfection is better tooling, better vetting, and a stronger community — not a smaller, controlled list managed by one company with its own incentives.</p>
-
-  <p><strong>That's what we're building. That's the movement.</strong></p>
-
-  <div class="protect-box">
-    <div class="protect-tag-display">#ProtectTheClaw</div>
-    <h3>The narrative is being written right now.</h3>
-    <p>Join the builders who are fixing the actual problem — not the ones selling fear as a feature.</p>
-    <a href="/submit" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent2);color:#fff;font-weight:700;font-size:0.95rem;padding:12px 28px;border-radius:8px;transition:opacity 0.2s;">Submit Your Build →</a>
+  <div class="cta-box">
+    <h3>Building for NanoClaw or OpenClaw?</h3>
+    <p>Submit your skill or agent to the ClawFactory registry. We vet everything. Both platforms welcome.</p>
+    <div class="cta-row">
+      <a href="/nanoclaw" class="btn btn-nano">NanoClaw Hub →</a>
+      <a href="/skills" class="btn btn-claw">OpenClaw Skills →</a>
+    </div>
   </div>
 
   <div class="article-footer">
