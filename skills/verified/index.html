@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClawFactory Verified Skills — Passed Security Audit</title>
+  <meta name="description" content="21 OpenClaw skills that passed ClawFactory Gate 1 security analysis. Safe to install. Vetted by real scanners, not promises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0c10;--surface:#111318;--surface2:#181c23;--border:#1e2330;--teal:#00ffcc;--text:#e8eaf0;--muted:#6b7280;--success:#22c55e;--font:'Inter',sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    nav{position:sticky;top:0;z-index:100;background:rgba(10,12,16,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-size:1.2rem;font-weight:800;color:var(--teal)}
+    .nav-right{display:flex;gap:16px;align-items:center}
+    .nav-link{font-size:0.875rem;color:var(--muted);transition:color 0.2s}
+    .hero{padding:64px 24px 48px;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(34,197,94,0.07) 0%,transparent 70%)}
+    .hero-inner{max-width:1200px;margin:0 auto}
+    .eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--success);margin-bottom:10px}
+    h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px}
+    .hero-sub{color:var(--muted);font-size:1rem;max-width:600px;line-height:1.7;margin-bottom:24px}
+    .stat-pills{display:flex;gap:12px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:600;border:1px solid}
+    .pill-pass{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.3);color:var(--success)}
+    .pill-audit{background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.3);color:#ef4444}
+    .pill-scan{background:rgba(0,255,204,0.07);border-color:rgba(0,255,204,0.2);color:var(--teal)}
+    .skills-section{padding:48px 24px 80px}
+    .skills-inner{max-width:1200px;margin:0 auto}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+    .skill-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s}
+    .skill-card:hover{border-color:var(--success);box-shadow:0 0 24px rgba(34,197,94,0.1);transform:translateY(-2px)}
+    .card-head{display:flex;flex-direction:column;gap:6px}
+    .card-name{font-size:1rem;font-weight:700;color:var(--text)}
+    .card-badges{display:flex;gap:6px;flex-wrap:wrap}
+    .badge{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:2px 7px;border-radius:4px}
+    .badge-pass{background:rgba(34,197,94,0.1);color:var(--success);border:1px solid rgba(34,197,94,0.2)}
+    .badge-lang{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border)}
+    .card-desc{color:var(--muted);font-size:0.875rem;line-height:1.6;flex:1}
+    .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+    .card-stars{font-size:0.8rem;color:var(--muted)}
+    .card-link{font-size:0.8rem;font-weight:600;color:var(--teal);display:inline-flex;align-items:center;gap:4px;transition:gap 0.2s}
+    .skill-card:hover .card-link{gap:8px}
+    .cta-strip{background:var(--surface);border-top:1px solid var(--border);padding:40px 24px;text-align:center}
+    .cta-strip p{color:var(--muted);font-size:0.95rem;margin-bottom:20px}
+    .btn-teal{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:#0a0c10;font-weight:700;font-size:0.9rem;padding:12px 24px;border-radius:8px;transition:opacity 0.2s}
+    .btn-teal:hover{opacity:0.88}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">🏭 ClawFactory</a>
+    <div class="nav-right">
+      <a href="/audit" class="nav-link" style="color:#ef4444">⚠️ Full Audit</a>
+      <a href="/skills" class="nav-link">All Skills</a>
+      <a href="/submit" class="nav-link">Submit</a>
+    </div>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">✓ Verified — March 2026</div>
+    <h1>Skills That Passed.<br>No guessing. No blind installs.</h1>
+    <p class="hero-sub">We scanned 199 of the most-starred OpenClaw skills on GitHub. These 21 passed Gate 1 static analysis clean. We did the work. You get the list. Free.</p>
+    <div class="stat-pills">
+      <span class="pill pill-pass">✓ 21 clean passes</span>
+      <span class="pill pill-audit">⚠️ 199 total scanned</span>
+      <span class="pill pill-scan">Gate 1 static analysis</span>
+    </div>
+  </div>
+</div>
+<div class="skills-section">
+  <div class="skills-inner">
+    <div class="skills-grid">
+      <a href="https://github.com/SukinShetty/Nemp-memory" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Nemp Memory</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">PowerShell</span>
+          </div>
+        </div>
+        <p class="card-desc">Nemp - The memory plugin for Claude Code that remembers everything.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 81</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/blessonism/github-explorer-skill" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Github Explorer Skill</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw Agent Skill — 对任意 GitHub 项目进行多源深度分析，输出结构化研判报告</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 63</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/0xMerl99/PaperClaw" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Paperclaw</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw skill</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 50</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/0xMerl99/PaperClaw" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Paperclaw</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw skill</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 50</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/EESJGong/scholar-skill" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Scholar Skill</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">An OpenClaw skill for academic reading, knowledge linking, reflection, and knowledge evolution in Obsidian.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 21</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/Digidai/product-manager-skills" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Product Manager Skills</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">PM skill for Claude Code, Codex, Cursor, and Windsurf: diagnose SaaS metrics, critique PRDs, plan roadmaps, run discover</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 19</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/joylarkin/openclaw-security-news" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Openclaw Security News</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">A collection of news headlines about OpenClaw Security for AI builders, developers, and investors. Updated twice daily.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 19</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/0xMerl99/MyClaw3D" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Myclaw3D</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">JavaScript</span>
+          </div>
+        </div>
+        <p class="card-desc">MyClaw3D - A 3D isometric virtual headquarters for managing autonomous AI agents. Built with React + Three.js.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 14</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/cyijun/agent-smith" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Agent Smith</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">Agent Smith has taken over your terminal: he recursively breaks down tasks and mercilessly executes them with Claude Cod</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 7</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/ammohitchaprana/OpenClaw-Applications-Usecases" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Openclaw Applications Usecases</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            
+          </div>
+        </div>
+        <p class="card-desc">A community collection of OpenClaw applications & use cases for making life easier.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 6</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/chegangan/Daily-EnglishNews-Reader" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Daily Englishnews Reader</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">基于OpenClaw的英语新闻检索skills，用i+1学习法轻松学英语+自动智能搜集全球资讯。</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 6</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/openclaw-rocks/skills" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Skills</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">Agent skills by OpenClaw.rocks. The simplest way to host AI agents</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 4</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/aquarius-wing/grok-scraper" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Grok Scraper</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">JavaScript</span>
+          </div>
+        </div>
+        <p class="card-desc">Execute queries to Grok AI via Playwright browser automation without requiring an X API KEY.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 3</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/JGM2025/linux-patcher-skill" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Linux Patcher Skill</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Shell</span>
+          </div>
+        </div>
+        <p class="card-desc">Automated Linux server patching with PatchMon integration for OpenClaw</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 3</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/heyuqiu2023/call-agents-help" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Call Agents Help</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw skill — 召唤DeepSeek辅助AI参与Telegram群讨论</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 2</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/jdwebprogrammer/autosynthetix-skill" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Autosynthetix Skill</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw skill for AutoSynthetix - The Autonomous AI Agent Marketing Exchange Platform - Deploy AI-powered sales with Ag</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/XiaoYiWeio/bili-checkin" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Bili Checkin</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">📺 B站全自动签到 — 每日经验任务(65EXP/天) + 直播弹幕签到。OpenClaw Skill, zero dependencies.</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/ARE2200/orchard-kit" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Orchard Kit</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">🌳 Build secure, aligned autonomous AI agents with boundary control, trust verification, and self-governance tools for sa</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/NeoSkillFactory/rag-query-optimizer" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Rag Query Optimizer</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">JavaScript</span>
+          </div>
+        </div>
+        <p class="card-desc">Automatically analyzes RAG pipeline retrieval results and generates optimized query refinement suggestions to improve an</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/ALT-F1-OpenClaw/openclaw-skill-atlassian-jira-by-altf1be" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Openclaw Skill Atlassian Jira By Altf1Be</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">JavaScript</span>
+          </div>
+        </div>
+        <p class="card-desc">OpenClaw skill for Atlassian Jira Cloud — CRUD issues, comments, attachments, workflow transitions, and JQL search via J</p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/eamanc-lab/openclaw-persona-forge" target="_blank" rel="noopener" class="skill-card">
+        <div class="card-head">
+          <div class="card-name">Openclaw Persona Forge</div>
+          <div class="card-badges">
+            <span class="badge badge-pass">✓ Gate 1 Pass</span>
+            <span class="badge badge-lang">Python</span>
+          </div>
+        </div>
+        <p class="card-desc">🦞🔨 OpenClaw AI Agent 龙虾人设锻造炉 — Claude Code Skill for generating lobster personas with identity tension, boundary rules, </p>
+        <div class="card-footer">
+          <span class="card-stars">⭐ 1</span>
+          <span class="card-link">View on GitHub →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="cta-strip">
+  <p>Built something that passes vetting? Get it listed here — free.</p>
+  <a href="/submit" class="btn-teal">Submit Your Skill →</a>
+</div>
+</body>
+</html>
