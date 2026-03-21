@@ -706,6 +706,7 @@
       <li><a href="/audit" style="color:#ef4444;font-weight:600">⚠️ Audit</a></li>
       <li><a href="/skills">Community</a></li>
       <li><a href="/nanoclaw" style="color: #f97316; font-weight:600;">🟠 NanoClaw</a></li>
+      <li><a href="#pricing" style="color:#f97316;font-weight:600">💳 Pricing</a></li>
       <li><a href="#protect" class="protect">#ProtectTheClaw</a></li>
       <li><a href="https://clawfactory.me" style="color: var(--muted); font-size:0.8rem;">→ .me</a></li>
     </ul>
@@ -970,6 +971,95 @@
     </div>
   </div>
 </footer>
+
+<!-- PRICING -->
+<section id="pricing" style="padding:80px 24px;background:#0d1117;border-top:1px solid #1e2330">
+  <div class="section-inner" style="max-width:1100px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#00ffcc;margin-bottom:8px">Upgrade</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;letter-spacing:-0.03em">Support the mission. Get more.</h2>
+      <p style="color:#6b7280;margin-top:8px">Free tier always available. Upgrades fund the open ecosystem.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+      <!-- Pro -->
+      <div style="background:#111318;border:1px solid #1e2330;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#00ffcc">Pro Developer</div>
+        <div style="font-size:2.4rem;font-weight:900;color:#fff">$9<span style="font-size:1rem;font-weight:400;color:#6b7280">/mo</span></div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;color:#9ca3af;font-size:0.875rem;flex:1">
+          <li>✅ Unlimited skill submissions</li>
+          <li>✅ Priority review queue</li>
+          <li>✅ Verified badge on profile</li>
+          <li>✅ Email notification on rating</li>
+        </ul>
+        <button onclick="startCheckout('pro','Pro Developer — $9/mo')" style="background:#00ffcc;color:#0a0c10;font-weight:700;font-size:0.9rem;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get Pro →</button>
+      </div>
+      <!-- Featured -->
+      <div style="background:#111318;border:2px solid #f97316;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px;position:relative">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#f97316;color:#000;font-size:0.7rem;font-weight:800;padding:4px 14px;border-radius:100px">MOST POPULAR</div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#f97316">Featured Listing</div>
+        <div style="font-size:2.4rem;font-weight:900;color:#fff">$19<span style="font-size:1rem;font-weight:400;color:#6b7280">/mo</span></div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;color:#9ca3af;font-size:0.875rem;flex:1">
+          <li>✅ Top directory placement</li>
+          <li>✅ Featured badge</li>
+          <li>✅ Priority in search results</li>
+          <li>✅ Monthly analytics report</li>
+        </ul>
+        <button onclick="startCheckout('featured','Featured Listing — $19/mo')" style="background:#f97316;color:#0a0c10;font-weight:700;font-size:0.9rem;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get Featured →</button>
+      </div>
+      <!-- Review -->
+      <div style="background:#111318;border:1px solid #1e2330;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b59b6">Review-as-a-Service</div>
+        <div style="font-size:2.4rem;font-weight:900;color:#fff">$49<span style="font-size:1rem;font-weight:400;color:#6b7280"> once</span></div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;color:#9ca3af;font-size:0.875rem;flex:1">
+          <li>✅ Full 3-gate security review</li>
+          <li>✅ Written risk report</li>
+          <li>✅ LOW/MED/HIGH certificate</li>
+          <li>✅ Enterprise-grade documentation</li>
+        </ul>
+        <button onclick="startCheckout('review','Review-as-a-Service — $49')" style="background:#9b59b6;color:#fff;font-weight:700;font-size:0.9rem;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get Review →</button>
+      </div>
+    </div>
+    <p style="text-align:center;color:#6b7280;font-size:0.8rem;margin-top:24px">Secure checkout via Stripe. Cancel anytime.</p>
+  </div>
+</section>
+
+<div id="checkout-banner" style="display:none;position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#22c55e;color:#000;padding:16px 32px;border-radius:12px;font-weight:700;font-size:1rem;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.3)">
+  ✅ Payment confirmed! Check your email.
+</div>
+
+<script>
+async function startCheckout(productId, label) {
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = 'Loading...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://glistening-spontaneity-production.up.railway.app/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        product_id: productId,
+        success_url: 'https://clawfactory.net/?success=1#pricing',
+        cancel_url: 'https://clawfactory.net/#pricing'
+      })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Try again or email hello@clawfactory.me');
+      btn.textContent = orig; btn.disabled = false;
+    }
+  } catch(e) {
+    alert('Connection error. Try again or email hello@clawfactory.me');
+    btn.textContent = orig; btn.disabled = false;
+  }
+}
+if (new URLSearchParams(window.location.search).get('success') === '1') {
+  document.getElementById('checkout-banner').style.display = 'block';
+  setTimeout(() => document.getElementById('checkout-banner').style.display = 'none', 6000);
+}
+</script>
 
 <script>
   // Mobile nav toggle
