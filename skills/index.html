@@ -61,6 +61,15 @@
     .card-link.agent { color: var(--accent2); }
     .install-cmd { font-size: 0.72rem; font-family: monospace; color: var(--muted); background: rgba(255,255,255,0.04); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); }
 
+    .section-label { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+    .section-label.verified { color: #22c55e; }
+    .section-note { color: var(--muted); font-size: 0.95rem; margin: 0 0 24px; max-width: 720px; }
+    .skills-block + .skills-block { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .verified-link-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+    .verified-link { color: #22c55e; font-size: 0.92rem; font-weight: 700; }
+    .verified-link:hover { text-decoration: underline; }
+    .verified-pill { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.22); }
+
     .coming-soon { text-align: center; padding: 80px 24px; color: var(--muted); }
     .coming-soon h3 { font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 
@@ -101,46 +110,61 @@
 
 <div class="skills-section">
   <div class="skills-inner">
-    <div class="skills-grid" id="skillsGrid">
+    <div class="skills-block">
+      <div class="section-label">Featured</div>
+      <p class="section-note">Original ClawFactory builds and highlighted tools we want front and center.</p>
+      <div class="skills-grid" id="skillsGrid">
 
-      <a href="/skills/deslop" class="skill-card" data-type="skill" data-cat="dev-tools">
-        <div class="card-icon">🧹</div>
-        <div class="card-meta">
-          <span class="card-title">deslop</span>
-          <span class="badge">Skill</span>
-        </div>
-        <p class="card-desc">Remove AI-style code slop from a branch. Detects inconsistent defensive noise, preserves behavior and local style. The code review you wish you'd had.</p>
-        <div class="card-footer">
-          <span class="card-link">View → </span>
-          <span class="install-cmd">clawhub install deslop</span>
-        </div>
-      </a>
+        <a href="/skills/deslop" class="skill-card" data-type="skill" data-cat="dev-tools">
+          <div class="card-icon">🧹</div>
+          <div class="card-meta">
+            <span class="card-title">deslop</span>
+            <span class="badge">Skill</span>
+          </div>
+          <p class="card-desc">Remove AI-style code slop from a branch. Detects inconsistent defensive noise, preserves behavior and local style. The code review you wish you'd had.</p>
+          <div class="card-footer">
+            <span class="card-link">View → </span>
+            <span class="install-cmd">clawhub install deslop</span>
+          </div>
+        </a>
 
-      <a href="/skills/x-algorithm" class="skill-card" data-type="skill" data-cat="social">
-        <div class="card-icon">📈</div>
-        <div class="card-meta">
-          <span class="card-title">x-algorithm</span>
-          <span class="badge">Skill</span>
-        </div>
-        <p class="card-desc">X/Twitter viral growth algorithm for AI agents. Boost engagement, avoid reach death. Rules straight from the algorithm. Vibe-coding ready.</p>
-        <div class="card-footer">
-          <span class="card-link">View → </span>
-          <span class="install-cmd">clawhub install x-algorithm</span>
-        </div>
-      </a>
+        <a href="/skills/x-algorithm" class="skill-card" data-type="skill" data-cat="social">
+          <div class="card-icon">📈</div>
+          <div class="card-meta">
+            <span class="card-title">x-algorithm</span>
+            <span class="badge">Skill</span>
+          </div>
+          <p class="card-desc">X/Twitter viral growth algorithm for AI agents. Boost engagement, avoid reach death. Rules straight from the algorithm. Vibe-coding ready.</p>
+          <div class="card-footer">
+            <span class="card-link">View → </span>
+            <span class="install-cmd">clawhub install x-algorithm</span>
+          </div>
+        </a>
 
-      <a href="/skills/giles-grindhouse" class="skill-card" data-type="agent" data-cat="agent">
-        <div class="card-icon">🕴️</div>
-        <div class="card-meta">
-          <span class="card-title">Giles Grindhouse</span>
-          <span class="badge agent">Agent</span>
-        </div>
-        <p class="card-desc">AI executive director and chief of staff. Runs a mission control dashboard, logs work, manages cron, ships code. The agent that runs the business.</p>
-        <div class="card-footer">
-          <span class="card-link agent">Meet Giles → </span>
-        </div>
-      </a>
+        <a href="/skills/giles-grindhouse" class="skill-card" data-type="agent" data-cat="agent">
+          <div class="card-icon">🕴️</div>
+          <div class="card-meta">
+            <span class="card-title">Giles Grindhouse</span>
+            <span class="badge agent">Agent</span>
+          </div>
+          <p class="card-desc">AI executive director and chief of staff. Runs a mission control dashboard, logs work, manages cron, ships code. The agent that runs the business.</p>
+          <div class="card-footer">
+            <span class="card-link agent">Meet Giles → </span>
+          </div>
+        </a>
 
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <div class="verified-link-row">
+        <div>
+          <div class="section-label verified">Verified Skills</div>
+          <p class="section-note">Everything that passed the security audit on <code>/skills/verified</code>, mirrored here as browsable panels.</p>
+        </div>
+        <a href="/skills/verified" class="verified-link">Open full verified list →</a>
+      </div>
+      <div class="skills-grid" id="verifiedSkillsGrid"></div>
     </div>
 
     <div class="coming-soon" id="emptyState" style="display:none;">
@@ -151,8 +175,34 @@
 </div>
 
 <script>
+  async function loadVerifiedCards() {
+    try {
+      const res = await fetch('/skills/verified/');
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const verifiedCards = [...doc.querySelectorAll('.skills-grid .skill-card')];
+      const target = document.getElementById('verifiedSkillsGrid');
+      verifiedCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.dataset.type = 'skill';
+        clone.dataset.cat = clone.dataset.cat || 'verified';
+        const footer = clone.querySelector('.card-footer');
+        if (footer && !footer.querySelector('.verified-pill')) {
+          const pill = document.createElement('span');
+          pill.className = 'verified-pill';
+          pill.textContent = 'Verified';
+          footer.prepend(pill);
+        }
+        target.appendChild(clone);
+      });
+    } catch (err) {
+      console.error('Failed to load verified skills', err);
+    }
+  }
+
   // Auto-apply filter from URL param on load
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', async () => {
+    await loadVerifiedCards();
     const p = new URLSearchParams(window.location.search).get('filter');
     if (p) {
       const btn = document.querySelector(`.filter-btn[data-filter="${p}"]`);
